@@ -12,23 +12,23 @@
 sem_t database_access; // семафор для ограничения доступа к базе данных
 sem_t readers_changing; // семафор для смены количества читателей
 sem_t information_output; // семафоры для вывода информации в консоль/файл
-const int SIZE = 11; // размер базы данных 
+const int SIZE = 11; // размер базы данных
 int DB[SIZE];  // база данных
 int readers_count = 0; // количество читателей, пользующихся библиотекой в какой-то конкретный момент
 int readers_size; // количество читателей (всего)
 int writers_size; // количество писателей (всего)
 FILE *output; // файл для вывода информации
 
-// метод для сортировки базы данных (в условии сказано, 
+// метод для сортировки базы данных (в условии сказано,
 // что после изменений она должна сохранять непротиворечивое состояние)
 void sort_database() {
-   for (int i = 0; i < SIZE - 1; ++i) {
-       for (int j = i + 1; j < SIZE; ++j) {
-           if (DB[i] > DB[j]) {
-               std::swap(DB[i], DB[j]);
-           }
-       }
-   }
+    for (int i = 0; i < SIZE - 1; ++i) {
+        for (int j = i + 1; j < SIZE; ++j) {
+            if (DB[i] > DB[j]) {
+                std::swap(DB[i], DB[j]);
+            }
+        }
+    }
 }
 
 // метод, который превращает строку в неотрицательное число.
@@ -68,18 +68,18 @@ void *funcRead(void *param) {
     std::cout << "reader " << r_num << " started his work with db\n";
     // освобождаем возможность писать в файл/консоль
     sem_post(&information_output);
-    
+
     usleep(((rand() + clock()) * 1234567) % 500000);
-    
+
     // читаем рандомный элемент и выводим информацию об этом (аналогично блокируя потоки)
     int random_pos = (rand() + clock()) % SIZE;
     sem_wait(&information_output);
-    fprintf(output, "READER %d READ %dTH ELEMENT. IT IS %d\n", r_num, random_pos + 1, DB[random_pos]);
-    std::cout << "READER " << r_num << " READ " << random_pos + 1 << "TH ELEMENT. IT IS " << DB[random_pos] << '\n';
+    fprintf(output, "reader %d read %dth element. it's %d\n", r_num, random_pos + 1, DB[random_pos]);
+    std::cout << "reader " << r_num << " read " << random_pos + 1 << "th element. it's" << DB[random_pos] << '\n';
     sem_post(&information_output);
-        
-    usleep(((rand() + clock()) * 1234567) % 500000);    
-    
+
+    usleep(((rand() + clock()) * 1234567) % 500000);
+
     // выводим информацию об окончании конкретного читателя действий с базой данных
     sem_wait(&information_output);
     fprintf(output, "reader %d finished his work with db\n", r_num);
@@ -107,43 +107,43 @@ void *funcWrite(void *param) {
 
     // блокируем доступ к базе данных при первой возможности
     sem_wait(&database_access);
-    
+
     // предполагаю, что решение правильное, поэтому конкурирующих потоков на запись у этого потока быть не должно,
     // тогда и блокировать их не будем
 
     // вывод информации о начале действий с базой данных
     fprintf(output, "writer %d started his work with db\n", w_num);
     std::cout << "writer " << w_num << " started his work with db\n";
-    
+
     usleep(((rand() + clock()) * 1234567) % 500000);
-    
-    // писатель случайным образом меняет записи в базе данных 
+
+    // писатель случайным образом меняет записи в базе данных
     int random_pos = (rand() + clock()) % SIZE;
     int prev_number = DB[random_pos];
     int new_number = (rand() + clock()) % 20;
     DB[random_pos] = new_number;
     // вывод информации об успешной смене записи писателем
-    fprintf(output, "WRITER %d CHANGED %dTH ELEMENT IN DATABASE FROM %d TO %d\ndatabase was also sorted\n", 
-        w_num, random_pos + 1, prev_number, new_number);
-    std::cout << "WRITER " << w_num << " CHANGED " << random_pos + 1 << "TH ELEMENT IN DATABASE FROM ";
-    std::cout << prev_number << " TO " << new_number << "\ndatabase was also sorted\n";
+    fprintf(output, "writer %d changed %dth element in db from %d to %d\ndatabase was also sorted\n",
+            w_num, random_pos + 1, prev_number, new_number);
+    std::cout << "writer " << w_num << " changes " << random_pos + 1 << "th element in db from ";
+    std::cout << prev_number << " to " << new_number << "\ndatabase was also sorted\n";
     // возврат базы данных к непротиворечивому виду (необходимо по условию)
     sort_database();
-    
+
     usleep(((rand() + clock()) * 1234567) % 500000);
-    
+
     // вывод информации об окончании действий с базой данных
     fprintf(output, "writer %d finished his work with db\n", w_num);
     std::cout << "writer " << w_num << " finished his work with db\n";
 
-    // освобождаем доступ к базе данных 
+    // освобождаем доступ к базе данных
     sem_post(&database_access);
 
     return nullptr;
 }
 
 int main(int argc, char *argv[]) {
-    // ввод данных 
+    // ввод данных
     if (argc > 2) {
         std::cout << "wrong input\n";
         return 0;
@@ -210,7 +210,7 @@ int main(int argc, char *argv[]) {
     }
 
     // соединение потоков в конце, чтоб программа не завершилась раньше дочерних потоков
-    for (int i = 0; i < writers_size; ++i) {	
+    for (int i = 0; i < writers_size; ++i) {
         pthread_join(threadW[i], nullptr);
     }
 
@@ -219,10 +219,10 @@ int main(int argc, char *argv[]) {
     }
 
     // подчистка семафоров
-    sem_destroy(&database_access);	
+    sem_destroy(&database_access);
     sem_destroy(&readers_changing);
     sem_destroy(&information_output);
-    
+
     // вывод базы данных после всех произведенных с ней действий
     std::cout << "\n\nnew database: \n";
     for (int i = 0; i < SIZE; ++i) {
