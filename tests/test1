@@ -1,0 +1,22 @@
+random numbers was generated
+number of readers: 1
+number of writers: 2
+
+initial database: 
+1 2 3 4 5 6 7 8 9 10 11 
+
+writer 1 started his work with db
+WRITER 1 CHANGED 3TH ELEMENT IN DATABASE FROM 3 TO 15
+database was also sorted
+writer 1 finished his work with db
+reader 1 started his work with db
+READER 1 READ 9TH ELEMENT. IT IS 10
+reader 1 finished his work with db
+writer 2 started his work with db
+WRITER 2 CHANGED 8TH ELEMENT IN DATABASE FROM 9 TO 18
+database was also sorted
+writer 2 finished his work with db
+
+
+new database: 
+1 2 4 5 6 7 8 10 11 15 18 
