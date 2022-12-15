@@ -1,0 +1,36 @@
+random numbers was generated
+number of readers: 3
+number of writers: 4
+
+initial database: 
+1 2 3 4 5 6 7 8 9 10 11 
+
+writer 4 started his work with db
+writer 4 changes 2th element in db from 2 to 18
+database was also sorted
+writer 4 finished his work with db
+reader 3 started his work with db
+reader 3 read 6th element. it's7
+reader 3 finished his work with db
+reader 2 started his work with db
+reader 2 read 1th element. it's1
+reader 2 finished his work with db
+writer 1 started his work with db
+writer 1 changes 11th element in db from 18 to 0
+database was also sorted
+writer 1 finished his work with db
+writer 3 started his work with db
+writer 3 changes 6th element in db from 6 to 11
+database was also sorted
+writer 3 finished his work with db
+reader 1 started his work with db
+reader 1 read 8th element. it's9
+reader 1 finished his work with db
+writer 2 started his work with db
+writer 2 changes 4th element in db from 4 to 4
+database was also sorted
+writer 2 finished his work with db
+
+
+new database: 
+0 1 3 4 5 7 8 9 10 11 11 
