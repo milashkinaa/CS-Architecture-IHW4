@@ -1,22 +1,64 @@
 random numbers was generated
-number of readers: 1
-number of writers: 2
+number of readers: 7
+number of writers: 8
 
 initial database: 
 1 2 3 4 5 6 7 8 9 10 11 
 
 writer 1 started his work with db
-WRITER 1 CHANGED 3TH ELEMENT IN DATABASE FROM 3 TO 15
+writer 1 changes 7th element in db from 7 to 3
 database was also sorted
 writer 1 finished his work with db
+reader 6 started his work with db
+reader 6 read 2th element. it's2
+reader 7 started his work with db
+reader 6 finished his work with db
+reader 7 read 2th element. it's2
+reader 7 finished his work with db
+writer 4 started his work with db
+writer 4 changes 6th element in db from 5 to 7
+database was also sorted
+writer 4 finished his work with db
+writer 6 started his work with db
+writer 6 changes 4th element in db from 3 to 3
+database was also sorted
+writer 6 finished his work with db
+writer 8 started his work with db
+writer 8 changes 8th element in db from 8 to 6
+database was also sorted
+writer 8 finished his work with db
+reader 2 started his work with db
 reader 1 started his work with db
-READER 1 READ 9TH ELEMENT. IT IS 10
+reader 5 started his work with db
+reader 5 read 1th element. it's1
+reader 5 finished his work with db
+reader 1 read 4th element. it's3
 reader 1 finished his work with db
+reader 2 read 11th element. it's11
+reader 4 started his work with db
+reader 3 started his work with db
+reader 2 finished his work with db
+reader 4 read 1th element. it's1
+reader 4 finished his work with db
+reader 3 read 1th element. it's1
+reader 3 finished his work with db
+writer 3 started his work with db
+writer 3 changes 9th element in db from 9 to 13
+database was also sorted
+writer 3 finished his work with db
 writer 2 started his work with db
-WRITER 2 CHANGED 8TH ELEMENT IN DATABASE FROM 9 TO 18
+writer 2 changes 6th element in db from 6 to 17
 database was also sorted
 writer 2 finished his work with db
+writer 7 started his work with db
+writer 7 changes 11th element in db from 17 to 7
+database was also sorted
+writer 7 finished his work with db
+writer 5 started his work with db
+writer 5 changes 1th element in db from 1 to 3
+database was also sorted
+writer 5 finished his work with db
 
 
 new database: 
-1 2 4 5 6 7 8 10 11 15 18 
+2 3 3 3 4 6 7 7 10 11 13 
