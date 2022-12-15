@@ -1,0 +1,15 @@
+random numbers was generated
+number of readers: 0
+number of writers: 1
+
+initial database: 
+1 2 3 4 5 6 7 8 9 10 11 
+
+writer 1 started his work with db
+writer 1 changes 7th element in db from 7 to 13
+database was also sorted
+writer 1 finished his work with db
+
+
+new database: 
+1 2 3 4 5 6 8 9 10 11 13 
