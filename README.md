@@ -30,4 +30,6 @@ __Описание алгоритма:__
 
 По классике добавила комментарии к программе.
 
+Программа писалась сразу на 8.
+
 ![Вот так вот]( https://sun9-14.userapi.com/impg/d7X2BONunlIASqUJ8l6vPHhb73_QN9KGqAXibA/zx0cejGPZZc.jpg?size=604x604&quality=96&sign=9c2ebb1f41118fab8ab709324c28a8e2&type=album "Вот так вот")
